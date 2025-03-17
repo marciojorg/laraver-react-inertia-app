@@ -1,13 +1,13 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
-export default function Index({ auth, projects }) {
+export default function Index({ auth, productBrands }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    Projects
+                    Product Brands
                 </h2>
             }
         >
@@ -21,55 +21,56 @@ export default function Index({ auth, projects }) {
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
                                     <tr className="text-nowrap">
                                         <th className="px-3 py-2">ID</th>
-                                        <th className="px-3 py-2">Image</th>
                                         <th className="px-3 py-2">Name</th>
                                         <th className="px-3 py-2">Status</th>
-                                        <th className="px-3 py-2 text-nowrap">
-                                            Create Date
-                                        </th>
-                                        <th className="px-3 py-2 text-nowrap">Due Date</th>
+
                                         <th className="px-3 py-2">
                                             Created By
                                         </th>
-                                        <th className="px-3 py-2 text-right">Actions</th>
+                                        <th className="px-3 py-2 text-right">
+                                            Actions
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {projects.data.map((project) => (
-                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    {productBrands.data.map((brand, index) => (
+                                        <tr
+                                            key={index}
+                                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                        >
                                             <td className="px-3 py-3">
-                                                {project.id}
+                                                {brand.id}
                                             </td>
+
                                             <td className="px-3 py-3">
-                                                <img
-                                                    src={project.image_path}
-                                                    style={{ width: 60 }}
-                                                />
+                                                {brand.name}
                                             </td>
+
                                             <td className="px-3 py-3">
-                                                {project.name}
+                                                {brand.status}
                                             </td>
+
                                             <td className="px-3 py-3">
-                                                {project.status}
+                                                {brand.createdBy.name}
                                             </td>
+
                                             <td className="px-3 py-3">
-                                                {project.created_at}
-                                            </td>
-                                            <td className="px-3 py-3">
-                                                {project.due_date}
-                                            </td>
-                                            <td className="px-3 py-3">
-                                                {project.createdBy.name}
-                                            </td>
-                                            <td className="px-3 py-3">
-                                                <Link href={route('project.edit', project.id)}
+                                                <Link
+                                                    href={route(
+                                                        "product-brand.edit",
+                                                        brand.id
+                                                    )}
                                                     className="font-medium text-blue-600
                                                         dark:text-blue-500 hover:underline mx-1"
                                                 >
-                                                     Edit
+                                                    Edit
                                                 </Link>
 
-                                                <Link href={route('project.destroy', project.id)}
+                                                <Link
+                                                    href={route(
+                                                        "product-brand.destroy",
+                                                        brand.id
+                                                    )}
                                                     className="font-medium text-red-600
                                                         dark:text-red-500 hover:underline mx-1"
                                                 >

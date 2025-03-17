@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description')->nullable();
-            $table->string('image_path')->nullable();
+            $table->string('path');
+            $table->string('extension');
+            $table->string('size');
+            $table->string('type')->nullable();;
             $table->string('status');
-            $table->string('priority');
-            $table->timestamp('due_date')->nullable();
-            $table->foreignId('assigned_user_id')->constrained('users');
+            $table->string('is_main');
+            $table->integer('position');
+            $table->foreignId('product_id')->constrained('products');
             $table->foreignId('created_by')->constrained('users');
-            $table->foreignId('updated_by')->constrained('users');
-            $table->foreignId('project_id')->constrained('projects');
-
+            $table->foreignId('updated_by')->constrained('users')->nullable();
+            $table->foreignId('deleted_by')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('product_images');
     }
 };

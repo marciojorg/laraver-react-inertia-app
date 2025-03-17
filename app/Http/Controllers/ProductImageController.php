@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProjectResource;
-use App\Models\Project;
+use App\Models\ProductImage;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Requests\StoreProductImageRequest;
+use App\Http\Requests\UpdateProductImageRequest;
 
-class ProjectController extends Controller
+class ProductImageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $query = Project::query();
-        $projects = $query->paginate(10)->onEachSide(1);
-        return inertia("Project/Index", ["projects" => ProjectResource::collection($projects)]);
+        //
     }
 
     /**
@@ -31,7 +28,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProductImageRequest $request)
     {
         //
     }
@@ -39,7 +36,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show(ProductImage $productImage)
     {
         //
     }
@@ -47,7 +44,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(ProductImage $productImage)
     {
         //
     }
@@ -55,7 +52,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProductImageRequest $request, ProductImage $productImage)
     {
         //
     }
@@ -63,7 +60,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(ProductImage $productImage)
     {
         //
     }

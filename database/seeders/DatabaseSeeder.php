@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Project;
-use App\Models\Task;
+use App\Models\Product;
+use App\Models\ProductBrand;
+use App\Models\ProductCategory;
+use App\Models\ProductImage;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,6 +26,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => time()
         ]);
 
-        Project::factory(10)->count(30)->hasTasks(30)->create();
+        ProductBrand::factory()->count(5)->create();
+        ProductCategory::factory()->count(5)->create();
+        Product::factory()->count(10)->create();
+        ProductImage::factory()->count(5)->create();
     }
 }

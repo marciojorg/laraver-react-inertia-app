@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 
-class TaskController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $query = Product::query();
+        $products = $query->paginate(10);
+        return inertia('Product/Index', [
+            'products' => ProductResource::collection($products),
+        ]);
     }
 
     /**
@@ -28,7 +33,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreProductRequest $request)
     {
         //
     }
@@ -36,7 +41,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Product $product)
     {
         //
     }
@@ -44,7 +49,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit(Product $product)
     {
         //
     }
@@ -52,7 +57,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         //
     }
@@ -60,7 +65,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Product $product)
     {
         //
     }

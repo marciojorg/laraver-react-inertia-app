@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProductBrandController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,9 +13,12 @@ Route::redirect('/', '/dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
-    Route::resource('project', ProjectController::class);
-    Route::resource('task', TaskController::class);
     Route::resource('user', UserController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('product-category', ProductCategoryController::class);
+    Route::resource('product-brand', ProductBrandController::class);
+    Route::resource('product-image', ProductImageController::class);
+
 });
 
 Route::middleware('auth')->group(function () {
